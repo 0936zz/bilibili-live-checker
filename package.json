@@ -1,0 +1,33 @@
+{
+	"name": "bilibili-live-checker",
+	"version": "1.0.0",
+	"cli-version": "1.0.0",
+	"description": "bilibili直播检测",
+	"main": "index.js",
+	"scripts": {
+		"start": "node index.js",
+		"cli": "node cli.js"
+	},
+	"author": "0936zz",
+	"license": "MIT",
+	"dependencies": {
+		"@alicloud/sms-sdk": "^1.0.2",
+		"ali-oss": "^4.10.1",
+		"co": "^4.6.0",
+		"commander": "^2.11.0",
+		"ejs": "^2.5.7",
+		"fs-extra": "^4.0.1",
+		"html-minifier": "^3.5.5",
+		"inquirer": "^3.2.3",
+		"log": "^1.4.0",
+		"moment-timezone": "^0.5.13",
+		"node-schedule": "^1.2.4",
+		"nodemailer": "^4.0.1",
+		"request": "^2.81.0",
+		"semver": "^5.4.1",
+		"table": "^4.0.1"
+	},
+	"devDependencies": {
+		"eslint": "^4.7.0"
+	}
+}

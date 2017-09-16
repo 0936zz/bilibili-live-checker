@@ -1,0 +1,6 @@
+{
+	"name": "bilibili-live-checker",
+	"script": "index.js",
+	"out_file": "./runtime/log",
+	"error_file": "./runtime/log"
+}

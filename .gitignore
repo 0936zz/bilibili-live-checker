@@ -1,0 +1,7 @@
+node_modules
+runtime
+json/*.json
+test.js
+!json/config.example.json
+.idea
+package-lock.json

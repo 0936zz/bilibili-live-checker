@@ -1,0 +1,22 @@
+{
+    "env": {
+        "node": true,
+        "es6": true
+    },
+    "parserOptions": {
+        "ecmaVersion": 8
+    },
+    "rules": {
+        "no-unused-vars": "off",
+        "no-console": "off",
+        "indent": ["error", "tab", {
+                "SwitchCase": 1
+            }
+        ],
+        "linebreak-style": ["error", "unix"],
+        "quotes": ["error", "single"],
+        "semi": ["error", "always"],
+        "eqeqeq": ["error", "smart"],
+        "space-before-function-paren": ["error", "always"],
+    }
+}
