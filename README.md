@@ -94,10 +94,10 @@ crontab格式，详见[node-schedule文档](https://github.com/node-schedule/nod
 {
 	"直播间ID": {
 		"name": "", // 房间UP主昵称
-        "roomId": "", // 直播间ID
-        "urlId": "", // 直播间URL ID
-        "notification": "public", // 提醒方式
-        "record": false // 是否录屏
+		"roomId": "", // 直播间ID
+		"urlId": "", // 直播间URL ID
+		"notification": "public", // 提醒方式
+		"record": false // 是否录屏
 	}
 }
 ```
