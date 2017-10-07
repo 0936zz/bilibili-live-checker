@@ -13,7 +13,7 @@ module.exports = async function (list) {
 			return false;
 		}
 		log.info('sending email: %s', JSON.stringify(list));
-	
+		console.log(list);
 		let str = await pub.renderTemplate(list);
 		str = minify(str, {
 			removeComments: true,

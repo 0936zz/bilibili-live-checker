@@ -1,41 +1,42 @@
 {
-	"email": {
-		"enable": true,
-		"host": "",
-		"port": "",
-		"ssl": "",
-		"username": "",
-		"password": ""
-	},
-	"message": {
-		"enable": true,
-		"accessKeyId": "",
-		"accessKeySecret": "",
-		"signName": "",
-		"templateCode": ""
-	},
-	"oss": {
-		"enable": true,
-		"accessKeyId": "",
-		"accessKeySecret": "",
-		"deleteAfterUpload": true
-	},
-	"chrome": {
-		"enable": true,
-		"requestToken": ""
-	},
-	"wechat": {
-		"enable": true,
-		"appId": "",
-		"appSecret": "",
-		"templateId": ""
-	},
-	"system": {
-		"phone": "",
-		"email": "",
-		"interval": "*/3 * * * *",
-		"publicNotification": [
-			"email"
-		]
-	}
+    "email": {
+        "enable": true,
+        "host": "",
+        "port": "",
+        "ssl": "",
+        "username": "",
+        "password": ""
+    },
+    "message": {
+        "enable": true,
+        "accessKeyId": "",
+        "accessKeySecret": "",
+        "signName": "",
+        "templateCode": ""
+    },
+    "oss": {
+        "enable": true,
+        "accessKeyId": "",
+        "accessKeySecret": "",
+        "deleteAfterUpload": true
+    },
+    "chrome": {
+        "enable": true,
+        "requestToken": "",
+        "port": 80
+    },
+    "wechat": {
+        "enable": true,
+        "appId": "",
+        "appSecret": "",
+        "templateId": ""
+    },
+    "system": {
+        "phone": "",
+        "email": "",
+        "interval": "*/3 * * * *",
+        "publicNotification": [
+            "email"
+        ]
+    }
 }

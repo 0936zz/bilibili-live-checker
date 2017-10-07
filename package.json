@@ -25,6 +25,7 @@
 		"nodemailer": "^4.0.1",
 		"request": "^2.81.0",
 		"semver": "^5.4.1",
+		"socket.io": "^2.0.3",
 		"table": "^4.0.1"
 	},
 	"devDependencies": {

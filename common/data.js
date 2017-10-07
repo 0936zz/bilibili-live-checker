@@ -11,8 +11,7 @@ function data (id) {
 			try {
 				data = JSON.parse(body).data;
 			} catch(err) {
-				log.error('error in parsing json: %s', JSON.stringify(err));
-				return reject(err);
+				return log.error('error in parsing json, error: %s', JSON.stringify(err), ', data: ', body);
 			}
 			resolved(data);
 		});
