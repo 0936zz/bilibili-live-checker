@@ -1,6 +1,9 @@
 # bilibili-live-checker
 bilibili直播检测工具，基于nodejs编写，提供多种提醒方式+自动录屏功能
 
+**新坑：https://github.com/live-checker/live-checker**
+欢迎大佬来帮填
+
 ## 配置文件说明
 
 ### email
@@ -78,12 +81,13 @@ crontab格式，详见[node-schedule文档](https://github.com/node-schedule/nod
 您可以通过在根目录下使用`node cli.js`命令使用命令行工具
 
 | 命令 | 简写 | 参数 | 说明 |
-| :-------- | :- | :------------ | :------------- |
-| --add     | -a | 房间id或房间url | 添加新关注      |
-| --delete  | -d | 房间id或房间url | 删除已关注的直播 |
-| --list    | -l | null          | 查看所有关注     |
-| --help    | -h | null          | 显示帮助        |
-| --Version | -V | null          | 查看版本号      |
+| :-------- | :- | :------------ | :--------------- |
+| --init    |    | null          | 创建程序运行所需文件|
+| --add     | -a | 房间id或房间url | 添加新关注        |
+| --delete  | -d | 房间id或房间url | 删除已关注的直播   |
+| --list    | -l | null          | 查看所有关注       |
+| --help    | -h | null          | 显示帮助          |
+| --Version | -V | null          | 查看版本号        |
 
 其他命令会后续添加
 
