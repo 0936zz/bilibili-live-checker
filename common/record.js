@@ -18,7 +18,7 @@ function getFlvUrl (id) {
 
 function upload (name) {
 	let client = new OSS({
-		region: 'oss-cn-beijing',
+		region: config.oss.region,
 		accessKeyId: config.oss.accessKeyId,
 		accessKeySecret: config.oss.accessKeySecret,
 		bucket: config.oss.bucket

@@ -2,9 +2,9 @@ const program = require('commander');
 const request = require('request');
 const fs = require('fs-extra');
 const inquirer = require('inquirer');
-const { table } = require('table');
+const {table} = require('table');
 
-const _data = require('./common/data');
+const user = require('./common/user');
 
 const pkgPath = `${__dirname}/package.json`;
 const upPath = `${__dirname}/json/following.json`;
@@ -15,8 +15,8 @@ const pkg = fs.readJsonSync(pkgPath);
 program
 	.version(pkg['cli-version'])
 	.usage('[options] [arguments]')
-	.option('-a, --add <roomId|roomUrl>', 'add a new following', getId)
-	.option('-d, --delete <roomId|roomUrl>', 'delete a following', getId)
+	.option('-a, --add <roomId|roomUrl>', 'add a new following', url2Id)
+	.option('-d, --delete <roomId|roomUrl>', 'delete a following', url2Id)
 	.option('-l, --list', 'list all followings')
 	.option('--init', 'create necessary files')
 	// .option('-c, --config <roomId|roomUrl>', 'modify the config of a following')
@@ -69,35 +69,21 @@ function promiseRequest (url) {
 }
 
 function url2Id (url) {
-	return new Promise(function (resolved, reject) {
-		promiseRequest(url).then(function (data) {
-			let urlId = parseInt(data.match(/var ROOMURL = (\d+)/)[1]);
-			let roomId = parseInt(data.match(/var ROOMID = (\d+)/)[1]);
-			resolved([roomId, urlId]);
-		}).catch(function (err) {
-			reject(err);
-		});
+	let id = getId(url);
+	return promiseRequest(`https://api.live.bilibili.com/room/v1/Room/room_init?id=${id}`).then(function (data) {
+		data = JSON.parse(data);
+		return ([data.data.room_id, data.data.short_id ? data.data.short_id : data.data.room_id]);
 	});
 }
 
-function getId (arg) {
-	return url2Id(isNaN(arg) ? arg : 'https://live.bilibili.com/' + arg);
+function getId (url) {
+	if (!isNaN(parseInt(url))) {
+		return parseInt(url);
+	}
+	let regex = /(http|https):\/\/live.bilibili.com\/(\d+)/;
+	let result = regex.exec(url);
+	return parseInt(result[2]);
 }
-
-
-program
-	.version(pkg['cli-version'])
-	.usage('[options] [arguments]')
-	.option('-a, --add <roomId|roomUrl>', 'add a new following', getId)
-	.option('-d, --delete <roomId|roomUrl>', 'delete a following', getId)
-	.option('-l, --list', 'list all followings')
-	.option('--init', 'create necessary files')
-	// .option('-c, --config <roomId|roomUrl>', 'modify the config of a following')
-	// .option('-r, --refresh <roomId|roomUrl>', 'refresh room master\'s user info', getId)
-	// .option('-s, --status <roomId|roomUrl>', 'get status of the room', getId)
-	// .option('--delete-all', 'delete all followings')
-	// .option('--check-update', 'check for update')
-	.parse(process.argv);
 
 let funs = {
 	add: function (id) {
@@ -106,22 +92,22 @@ let funs = {
 			idArr = data;
 			if (ups[idArr[0]]) {
 				console.log('you can\'t follow this live because you have followed it before');
-				process.exit();
+				process.exit(1);
 			}
-			return _data(idArr[0]);
+			return user(idArr[0]);
 		}).then(function (data) {
 			roomInfo = data;
 			let question = {
 				type: 'confirm',
 				name: 'sure',
-				message: `this will add [${roomInfo.ANCHOR_NICK_NAME}] to you following list, are you sure? (y)`,
+				message: `this will add [${roomInfo.info.uname}] to you following list, are you sure? (y)`,
 				default: true
 			};
 			return inquirer.prompt(question);
 		}).then(function (answers) {
 			if (answers.sure) {
 				jsonInfo = {
-					name: roomInfo.ANCHOR_NICK_NAME,
+					name: roomInfo.info.uname,
 					roomId: idArr[0],
 					urlId: idArr[1]
 				};
